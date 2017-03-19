@@ -9,7 +9,11 @@ gulp.task('default', function() {
 gulp.task('serve', function() {
     var server = gls.new('./app/server.js');
     server.start();
-    return;
+
+    gulp.watch('./app/server.js', function() {
+        server.stop();
+        server.start();
+    })
 });
 // gulp.task('stop', function() {
 //     server.stop();
