@@ -1,6 +1,9 @@
-let express = require('express');
-let app     = express();
-let path    = require('path');
+const express = require('express');
+
+const app     = express();
+
+const path    = require('path');
+
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
