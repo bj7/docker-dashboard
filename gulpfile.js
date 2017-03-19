@@ -1,6 +1,7 @@
-var gulp    = require('gulp');
+let gulp    = require('gulp');
 // var express = require('./app/server');
-var gls     = require('gulp-live-server');
+let gls     = require('gulp-live-server');
+let run     = require('gulp-run');
 
 gulp.task('default', function() {
     console.log("doing nothing...");
@@ -18,7 +19,6 @@ gulp.task('serve', function() {
         console.log("server restarted");
     })
 });
-// gulp.task('stop', function() {
-//     server.stop();
-//     return;
-// })
+gulp.task('build', function() {
+    return run('npm run build');
+})
