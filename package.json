@@ -13,6 +13,7 @@
   "author": "joshuabernitt <jjbernitt@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^3.18.0",
     "express": "^4.15.2",
     "gulp": "^3.9.1",
     "gulp-live-server": "0.0.30"
