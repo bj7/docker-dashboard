@@ -5,7 +5,6 @@ const sync          = require('browser-sync').create();
 
 gulp.task('default', () => {
     console.log("doing nothing...");
-    return;
 });
 gulp.task('serve', () => {
     console.log("Serving ./app/server.js...");
