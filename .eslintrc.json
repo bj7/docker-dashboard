@@ -1,14 +1,16 @@
 {
     "extends": "airbnb",
     "plugins": [
-        "react",
-        "jsx-a11y",
-        "import"
+//        "react",
+//        "jsx-a11y",
+//        "import"
     ],
     "rules": {
         "no-multi-spaces": "off",
         "indent": ["error", 4],
         "quotes": "off",
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        "no-console": "off",
+        "react/jsx-indent": ["error", 4]
     }
 }

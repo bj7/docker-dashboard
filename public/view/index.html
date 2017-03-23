@@ -1,30 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Angular QuickStart</title>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="" href="bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/styles.css">
+    <head>
+        <title>Angular QuickStart</title>
+        <base href="/">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="" href="bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/styles.css">
 
-    <!-- Polyfill(s) for older browsers -->
-    <script src="core-js/client/shim.min.js"></script>
+        <!-- Polyfill(s) for older browsers -->
+        <script src="core-js/client/shim.min.js"></script>
 
-    <script src="jquery/dist/jquery.js"></script>
+        <script src="jquery/dist/jquery.js"></script>
 
-    <script src="bootstrap/dist/js/bootstrap.js"></script>
+        <script src="bootstrap/dist/js/bootstrap.js"></script>
 
-    <script src="zone.js/dist/zone.js"></script>
+        <script src="zone.js/dist/zone.js"></script>
 
-    <script src="systemjs/dist/system.src.js"></script>
-    <script src="js/systemjs.config.js"></script>
-    <script>
-      System.import('js/main.js').catch(function(err){ console.error(err); });
-    </script>
-  </head>
+        <script src="systemjs/dist/system.src.js"></script>
+        <script src="js/systemjs.config.js"></script>
+        <!--Calls angular main file-->
+        <script>
+            System.import('js/main.js').catch((err) => {
+                console.error(err);
+            });
+        </script>
+    </head>
 
-  <body>
-    <my-app>Loading AppComponent content here ...</my-app>
-  </body>
+    <body>
+        <!--React and Angular2 cause I can-->
+        <div id="myreactcomponent"></div>
+        <my-app>Loading AppComponent content here ...</my-app>
+    </body>
+    <!--Include React bundel at the base to prevent errors if DOM is not rendered immediately-->
+    <script src="js/main_react_bundle.js"></script>
 </html>

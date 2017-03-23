@@ -6,11 +6,13 @@ const sync          = require('browser-sync').create();
 gulp.task('default', () => {
     console.log("doing nothing...");
 });
+
+// Start the express server and watch if primary files change.
 gulp.task('serve', () => {
     console.log("Serving ./app/server.js...");
     const server = gls.new('./app/server.js');
     server.start();
-
+    // Reload server is primary files change
     gulp.watch('./app/server.js', () => {
         console.log('./app/server.js changed; restarting...');
         server.stop();
@@ -18,16 +20,35 @@ gulp.task('serve', () => {
         console.log("server restarted");
     });
 });
+
+// Build typescript source via npm
 gulp.task('build:ts', () => {
     console.log("Building typescript sources...");
     run("npm run build").exec();
 });
+
+// watch ts files
 gulp.task('watch:ts', () => {
     gulp.watch('./src/**/*.ts', ['build:ts']);
 });
+
+// auto-refresh browser upon file system change
 gulp.task('browser-sync', () => {
     sync.init({
         proxy: "localhost:3000",
         files: "./public/**/*"
     });
+});
+
+// build jsx files via babel and webpack
+gulp.task('build:babel', () => {
+    console.log("Building babel files...");
+    run("babel './src/react_vendor/*.jsx' -d './src/react_src/'").exec();
+    console.log("bundling with webpack...");
+    run("webpack --config webpack.config.js").exec();
+});
+
+// watch jsx files
+gulp.task('watch:babel', () => {
+    gulp.watch('./src/**/*.jsx', ['build:babel']);
 });
