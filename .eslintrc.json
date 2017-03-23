@@ -11,6 +11,7 @@
         "quotes": "off",
         "comma-dangle": "off",
         "no-console": "off",
-        "react/jsx-indent": ["error", 4]
+        "react/jsx-indent": ["error", 4],
+        "react/prefer-stateless-function": "off"
     }
 }

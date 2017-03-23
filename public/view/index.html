@@ -20,18 +20,19 @@
         <script src="systemjs/dist/system.src.js"></script>
         <script src="js/systemjs.config.js"></script>
         <!--Calls angular main file-->
-        <script>
+        <!--<script>
             System.import('js/main.js').catch((err) => {
                 console.error(err);
             });
-        </script>
+        </script>-->
     </head>
 
     <body>
         <!--React and Angular2 cause I can-->
         <div id="myreactcomponent"></div>
-        <my-app>Loading AppComponent content here ...</my-app>
+        <!--<my-app>Loading AppComponent content here ...</my-app>-->
     </body>
     <!--Include React bundel at the base to prevent errors if DOM is not rendered immediately-->
+    <script src="js/card_react_bundle.js"></script>
     <script src="js/main_react_bundle.js"></script>
 </html>
