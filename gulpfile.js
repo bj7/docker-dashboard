@@ -3,8 +3,8 @@ const gls           = require('gulp-live-server');
 const run           = require('gulp-run');
 const sync          = require('browser-sync').create();
 
-gulp.task('default', () => {
-    console.log("doing nothing...");
+gulp.task('default', ['serve', 'browser-sync', 'watch:babel'], () => {
+    console.log("Starting up server and watchers...");
 });
 
 // Start the express server and watch if primary files change.
@@ -51,4 +51,13 @@ gulp.task('build:babel', () => {
 // watch jsx files
 gulp.task('watch:babel', () => {
     gulp.watch('./src/**/*.jsx', ['build:babel']);
+});
+
+// get running gulp processes
+gulp.task('ls', () => {
+    run("ps -v | grep 'gulp'").exec();
+});
+
+gulp.task('flow', () => {
+    run("./node_modules/.bin/flow ./src/react_vendor/*.jsx").exec();
 });

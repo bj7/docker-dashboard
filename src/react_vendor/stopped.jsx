@@ -1,0 +1,12 @@
+// @flow
+import React from 'react';
+
+export default class Stopped extends React.Component {
+    render() {
+        return (
+            <div>
+
+            </div>
+        );
+    }
+}

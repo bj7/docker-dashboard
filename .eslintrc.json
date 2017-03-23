@@ -13,5 +13,8 @@
         "no-console": "off",
         "react/jsx-indent": ["error", 4],
         "react/prefer-stateless-function": "off"
+    },
+    "env": {
+        "browser": true
     }
 }
