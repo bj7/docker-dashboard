@@ -13,7 +13,7 @@ gulp.task('serve', () => {
     const server = gls.new('./app/server.js');
     server.start();
     // Reload server is primary files change
-    gulp.watch('./app/server.js', () => {
+    gulp.watch('./app/*.js', () => {
         console.log('./app/server.js changed; restarting...');
         server.stop();
         server.start();

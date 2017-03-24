@@ -19,10 +19,8 @@ export default class Card extends React.Component {
                         <h4>A dashboard for monitoring and manipulating you docker containers</h4>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-lg-12">
-                        <Button buttonName="Create New" buttonStyle="btn btn-primary" />
-                    </div>
+                <div className="container">
+                    <Button buttonName="Create New" buttonStyle="btn btn-primary" />
                 </div>
                 <div className="container">
                     <div className="row">
