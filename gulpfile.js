@@ -42,10 +42,12 @@ gulp.task('browser-sync', () => {
 
 // build jsx files via babel and webpack
 gulp.task('build:babel', () => {
-    console.log("Building babel files...");
-    run("babel './src/react_vendor/*.jsx' -d './src/react_src/'").exec();
+    // console.log("Building babel files...");
+    // run("babel './src/react_vendor/*.jsx' -d './src/react_src/'").exec();
     console.log("bundling with webpack...");
+    // setTimeout(() => {
     run("webpack --config webpack.config.js").exec();
+    // }, 500);
 });
 
 // watch jsx files

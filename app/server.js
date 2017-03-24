@@ -4,6 +4,8 @@ const app     = express();
 
 const path    = require('path');
 
+const debug   = require('debug')('docker-dashboard:server');
+
 
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
@@ -13,5 +15,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('docker-dashboard listening on port 3000');
+    debug("Server listening on port 3000");
 });

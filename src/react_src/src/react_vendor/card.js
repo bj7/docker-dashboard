@@ -2,6 +2,8 @@ import React from 'react';
 
 import Stopped from './stopped';
 
+import Started from './started';
+
 import Button from './button';
 
 export default class Card extends React.Component {
@@ -42,43 +44,55 @@ export default class Card extends React.Component {
             ),
             React.createElement(
                 'div',
-                { className: 'row' },
+                { className: 'container' },
                 React.createElement(
                     'div',
-                    { className: 'col-sm-6' },
+                    { className: 'row' },
                     React.createElement(
-                        'h3',
-                        null,
+                        'div',
+                        { className: 'col-sm-6' },
                         React.createElement(
-                            'u',
+                            'h3',
                             null,
-                            'Stopped'
+                            React.createElement(
+                                'u',
+                                null,
+                                'Stopped'
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'row' },
+                            React.createElement(
+                                'div',
+                                { className: 'col-sm-12' },
+                                React.createElement(Stopped, null)
+                            )
                         )
-                    )
-                ),
-                React.createElement(
-                    'div',
-                    { className: 'col-sm-6' },
+                    ),
                     React.createElement(
-                        'h3',
-                        null,
+                        'div',
+                        { className: 'col-sm-6' },
                         React.createElement(
-                            'u',
+                            'h3',
                             null,
-                            'Running'
+                            React.createElement(
+                                'u',
+                                null,
+                                'Running'
+                            )
+                        ),
+                        React.createElement(
+                            'div',
+                            { className: 'row' },
+                            React.createElement(
+                                'div',
+                                { className: 'col-sm-12' },
+                                React.createElement(Started, null)
+                            )
                         )
                     )
                 )
-            ),
-            React.createElement(
-                'div',
-                { className: 'row' },
-                React.createElement(
-                    'div',
-                    { className: 'col-sm-6' },
-                    React.createElement(Stopped, null)
-                ),
-                React.createElement('div', { className: 'col-sm-6' })
             )
         );
     }

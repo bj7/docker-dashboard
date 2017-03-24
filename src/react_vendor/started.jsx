@@ -3,7 +3,7 @@ import React from 'react';
 
 import ContainerList from './containerList';
 
-export default class Stopped extends React.Component {
+export default class Started extends React.Component {
     _getStoppedContainers() {
         return [];
     }

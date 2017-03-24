@@ -3,6 +3,8 @@ import React from 'react';
 
 import Stopped from './stopped';
 
+import Started from './started';
+
 import Button from './button';
 
 export default class Card extends React.Component {
@@ -22,20 +24,24 @@ export default class Card extends React.Component {
                         <Button buttonName="Create New" buttonStyle="btn btn-primary" />
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-sm-6">
-                        <h3><u>Stopped</u></h3>
-                    </div>
-                    <div className="col-sm-6">
-                        <h3><u>Running</u></h3>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-sm-6">
-                        <Stopped />
-                    </div>
-                    <div className="col-sm-6">
-
+                <div className="container">
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <h3><u>Stopped</u></h3>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <Stopped />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-sm-6">
+                            <h3><u>Running</u></h3>
+                            <div className="row">
+                                <div className="col-sm-12">
+                                    <Started />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

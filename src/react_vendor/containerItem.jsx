@@ -20,7 +20,7 @@ export default class ContainerItem extends React.Component {
                 <div className="panel-heading">{this.props.name}</div>
                 <div className="panel-body">
                     Status: {this.props.status}
-                    <br/>
+                    <br />
                     Image: {this.props.image}
                 </div>
                 <div className="panel-footer">

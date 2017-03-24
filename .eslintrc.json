@@ -1,7 +1,9 @@
 {
+    "parser": "babel-eslint",
     "extends": "airbnb",
     "plugins": [
-//        "react",
+        "react",
+        "flowtype"
 //        "jsx-a11y",
 //        "import"
     ],
@@ -16,7 +18,12 @@
         "no-underscore-dangle": "off",
         "prefer-template": "off",
         "eqeqeq": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "import/no-named-as-default-member": "off",
+        "no-restricted-syntax": "off",
+        "react/forbid-prop-types": "off",
+        "no-prototype-builtins": "off",
+        "class-methods-use-this": "off"
     },
     "env": {
         "browser": true
