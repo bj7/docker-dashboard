@@ -1,8 +1,7 @@
+// @flow
 import React from 'react';
 
 export default class Button extends React.Component {
-    buttonName: React.PropTypes.string;
-    buttonStyle: React.PropTypes.string;
     render() {
         let buttonName = "";
         let buttonStyle = "btn btn-primary";

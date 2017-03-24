@@ -1203,9 +1203,7 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1215,6 +1213,8 @@ module.exports = __webpack_require__(19);
 
 
 /***/ }),
+/* 13 */,
+/* 14 */,
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2074,7 +2074,7 @@ module.exports = ReactPropTypesSecret;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
 
@@ -2104,7 +2104,7 @@ class Button extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__stopped__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(41);
@@ -2148,7 +2148,11 @@ class Card extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                     'div',
                     { className: 'col-lg-12' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__button__["a" /* default */], { buttonName: 'Create New', buttonStyle: 'btn btn-primary' })
-                ),
+                )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'row' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'col-sm-6' },
@@ -2175,6 +2179,16 @@ class Card extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
                         )
                     )
                 )
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'row' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col-sm-6' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__stopped__["a" /* default */], null)
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', { className: 'col-sm-6' })
             )
         );
     }
@@ -2187,16 +2201,23 @@ class Card extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerList__ = __webpack_require__(72);
+
+
 
 
 class Stopped extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     render() {
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('div', null);
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__containerList__["a" /* default */], null)
+        );
     }
 }
-/* unused harmony export default */
+/* harmony export (immutable) */ __webpack_exports__["a"] = Stopped;
 
 
 /***/ }),
@@ -4316,6 +4337,92 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 71 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+
+
+class ContainerItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+
+    /**
+     * Helper function to determine if the container is running
+     */
+    isRunning() {
+        return this.props._state;
+    }
+
+    render() {
+        const panelClass = this.isRunning() ? 'success' : 'default';
+        const classes = 'panel panel-' + panelClass;
+        const buttonText = this.isRunning() ? 'Stop' : 'Start';
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            { className: classes },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-heading' },
+                this.props.name
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-body' },
+                'Status: ',
+                this.props.status,
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('br', null),
+                'Image: ',
+                this.props.image
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'div',
+                { className: 'panel-footer' },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'button',
+                    { className: 'btn btn-default' },
+                    buttonText
+                )
+            )
+        );
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ContainerItem;
+
+
+ContainerItem.defaultProps = {
+    name: 'null',
+    status: 'null',
+    image: 'null',
+    _state: false
+};
+
+/***/ }),
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__containerItem__ = __webpack_require__(71);
+
+
+
+
+class ContainerList extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+
+    render() {
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            'div',
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__containerItem__["a" /* default */], null)
+        );
+    }
+}
+/* harmony export (immutable) */ __webpack_exports__["a"] = ContainerList;
+
 
 /***/ })
 /******/ ]);

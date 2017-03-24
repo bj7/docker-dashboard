@@ -38,7 +38,11 @@ export default class Card extends React.Component {
                     'div',
                     { className: 'col-lg-12' },
                     React.createElement(Button, { buttonName: 'Create New', buttonStyle: 'btn btn-primary' })
-                ),
+                )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
                 React.createElement(
                     'div',
                     { className: 'col-sm-6' },
@@ -65,6 +69,16 @@ export default class Card extends React.Component {
                         )
                     )
                 )
+            ),
+            React.createElement(
+                'div',
+                { className: 'row' },
+                React.createElement(
+                    'div',
+                    { className: 'col-sm-6' },
+                    React.createElement(Stopped, null)
+                ),
+                React.createElement('div', { className: 'col-sm-6' })
             )
         );
     }

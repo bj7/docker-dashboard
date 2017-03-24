@@ -21,11 +21,21 @@ export default class Card extends React.Component {
                     <div className="col-lg-12">
                         <Button buttonName="Create New" buttonStyle="btn btn-primary" />
                     </div>
+                </div>
+                <div className="row">
                     <div className="col-sm-6">
                         <h3><u>Stopped</u></h3>
                     </div>
                     <div className="col-sm-6">
                         <h3><u>Running</u></h3>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-sm-6">
+                        <Stopped />
+                    </div>
+                    <div className="col-sm-6">
+
                     </div>
                 </div>
             </div>
