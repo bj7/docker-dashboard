@@ -1,13 +1,40 @@
 // @flow
 import React from 'react';
 
+import * as io from 'socket.io-client';
+
 import Stopped from './stopped';
 
 import Started from './started';
 
 import Button from './button';
 
-export default class Card extends React.Component {
+type State = any;
+type Props = any;
+
+const socket = io.connect();
+
+export default class Card extends React.Component<void, Props, State> {
+    constructor() {
+        super();
+        this.state = {
+            containers: [],
+            stoppedContainers: []
+        };
+
+        socket.on('containers.list', (containers: any) => {
+            console.log(containers);
+            this.setState({
+                containers: containers
+            });
+        });
+    }
+
+    componentDidMount() {
+        console.log("componentDidMount");
+        socket.emit('containers.list');
+    }
+
     render() {
         return (
             <div className="container">

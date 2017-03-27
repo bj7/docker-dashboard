@@ -13,7 +13,16 @@ router.use((req, res, next) => {
 
 router.get('/', (req, res) => {
     console.log("get all containers");
-    res.json({ containers: [] });
+
+    let output = null;
+    docker.listContainers((err, containers) => {
+        output = [];
+        containers.forEach((info) => {
+            console.log(info);
+            output.push(info.id);
+        }, this);
+    });
+    res.json({ containers: output });
 });
 
 module.exports = router;
