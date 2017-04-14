@@ -1,9 +1,8 @@
-// @flow
-import React from 'react';
+import * as React from 'react';
 
 import * as io from 'socket.io-client';
 
-import _ from 'underscore';
+import * as _ from 'underscore';
 
 import Stopped from './stopped';
 
@@ -11,12 +10,9 @@ import Started from './started';
 
 import Button from './button';
 
-type State = any;
-type Props = any;
-
 const socket = io.connect();
-
-export default class Card extends React.Component<void, Props, State> {
+export interface CardProps {}
+export default class Card extends React.Component<CardProps, any> {
     constructor() {
         super();
         this.state = {
@@ -39,10 +35,6 @@ export default class Card extends React.Component<void, Props, State> {
     componentDidMount() {
         console.log("Primary component: <Card /> did mount.");
         socket.emit('containers.list');
-    }
-
-    separateContainers(containers: any) {
-
     }
 
     render() {

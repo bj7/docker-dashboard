@@ -1,7 +1,10 @@
-// @flow
-import React from 'react';
+import * as React from 'react';
 
-export default class Button extends React.Component {
+export interface P {
+    buttonName: string,
+    buttonStyle: string,
+}
+export default class Button extends React.Component<P, undefined> {
     render() {
         let buttonName = "";
         let buttonStyle = "btn btn-primary";

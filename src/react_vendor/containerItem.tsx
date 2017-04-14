@@ -1,7 +1,13 @@
-// @flow
-import React from 'react';
+import * as React from 'react';
 
-export default class ContainerItem extends React.Component {
+interface P {
+    _state: boolean,
+    name: string,
+    status: string,
+    image: string,
+}
+
+export default class ContainerItem extends React.Component<P, undefined> {
     static defaultProps: Object;
 
     /**
@@ -30,10 +36,3 @@ export default class ContainerItem extends React.Component {
         );
     }
 }
-
-ContainerItem.defaultProps = {
-    name: 'null',
-    status: 'null',
-    image: 'null',
-    _state: false
-};

@@ -1,12 +1,14 @@
-// @flow
-import React from 'react';
+import * as React from 'react';
 
 import ContainerItem from './containerItem';
 
-export default class ContainerList extends React.Component {
-    static defaultProps: Object;
+interface P {
+    list: Array<any>,
+}
+
+export default class ContainerList extends React.Component<P, undefined> {
     render() {
-        const output = [];
+        const output: Array<any> = [];
         for (let i in this.props.list) {
             if (this.props.list.hasOwnProperty(i)) {
                 output.push(<ContainerItem />);
@@ -19,11 +21,3 @@ export default class ContainerList extends React.Component {
         );
     }
 }
-
-ContainerList.propTypes = {
-    list: React.PropTypes.array.isRequired
-};
-
-ContainerList.defaultProps = {
-    list: []
-};

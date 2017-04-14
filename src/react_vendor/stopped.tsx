@@ -1,10 +1,9 @@
-// @flow
-import React from 'react';
+import * as React from 'react';
 
 import ContainerList from './containerList';
 
-export default class Started extends React.Component {
-    _getStoppedContainers() {
+export default class Stopped extends React.Component<{}, undefined> {
+    _getStoppedContainers(): Array<any> {
         return [];
     }
 
