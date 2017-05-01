@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 65);
+/******/ 	return __webpack_require__(__webpack_require__.s = 32);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -108,7 +108,7 @@ module.exports = React;
  */
 
 var keys = __webpack_require__(48);
-var hasBinary = __webpack_require__(21);
+var hasBinary = __webpack_require__(15);
 var sliceBuffer = __webpack_require__(36);
 var after = __webpack_require__(35);
 var utf8 = __webpack_require__(61);
@@ -909,7 +909,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ }),
 /* 5 */
@@ -1093,47 +1093,10 @@ function localstorage(){
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-const containerItem_1 = __webpack_require__(15);
-class ContainerList extends React.Component {
-    render() {
-        const output = [];
-        for (let i in this.props.list) {
-            if (this.props.list.hasOwnProperty(i)) {
-                output.push(React.createElement(containerItem_1.default, null));
-            }
-        }
-        return (React.createElement("div", null, output.length <= 0 ? "No Containers" : output));
-    }
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ContainerList;
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-const ReactDOM = __webpack_require__(63);
-const card_1 = __webpack_require__(14);
-ReactDOM.render(React.createElement("div", null, 
-    React.createElement(card_1.default, null)
-), document.getElementById('myreactcomponent'));
-
-
-/***/ }),
-/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -1141,7 +1104,7 @@ ReactDOM.render(React.createElement("div", null,
  */
 
 var parser = __webpack_require__(2);
-var Emitter = __webpack_require__(10);
+var Emitter = __webpack_require__(8);
 
 /**
  * Module exports.
@@ -1296,7 +1259,7 @@ Transport.prototype.onClose = function () {
 
 
 /***/ }),
-/* 9 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {// browser shim for xmlhttprequest module
@@ -1340,7 +1303,7 @@ module.exports = function (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1509,7 +1472,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 11 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /**
@@ -1552,7 +1515,7 @@ exports.decode = function(qs){
 
 
 /***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1564,7 +1527,7 @@ var debug = __webpack_require__(56)('socket.io-parser');
 var json = __webpack_require__(50);
 var Emitter = __webpack_require__(40);
 var binary = __webpack_require__(55);
-var isBuf = __webpack_require__(31);
+var isBuf = __webpack_require__(25);
 
 /**
  * Protocol version.
@@ -1962,185 +1925,30 @@ function error(data){
 
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 const React = __webpack_require__(1);
-class Button extends React.Component {
+const containerItem_1 = __webpack_require__(31);
+class ContainerList extends React.Component {
     render() {
-        let buttonName = "";
-        let buttonStyle = "btn btn-primary";
-        if (this.props.buttonName != "" || this.props.buttonName !== undefined) {
-            buttonName = this.props.buttonName;
+        const output = [];
+        for (let i in this.props.list) {
+            if (this.props.list.hasOwnProperty(i)) {
+                output.push(React.createElement(containerItem_1.default, {key: i, _status: this.props.list[i]._status, Names: this.props.list[i].Names, Status: this.props.list[i].Status, Image: this.props.list[i].Image, State: this.props.list[i].State}));
+            }
         }
-        if (this.props.buttonStyle != "" || this.props.buttonStyle !== undefined) {
-            buttonStyle = this.props.buttonStyle;
-        }
-        return (React.createElement("button", {className: buttonStyle}, buttonName));
+        return (React.createElement("div", null, output.length <= 0 ? "No Containers" : output));
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Button;
+exports.default = ContainerList;
 
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-const io = __webpack_require__(52);
-const _ = __webpack_require__(60);
-const stopped_1 = __webpack_require__(17);
-const started_1 = __webpack_require__(16);
-const button_1 = __webpack_require__(13);
-const socket = io.connect();
-class Card extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            containers: [],
-            stoppedContainers: []
-        };
-        socket.on('containers.list', (containers) => {
-            console.log("Primary component <Card /> did receive container list from socket connection to server.", containers);
-            const partitioned = _.partition(containers, (c) => c.State == "running");
-            console.log("Partitioned", partitioned);
-            this.setState({
-                containers: partitioned[0],
-                stoppedContainers: partitioned[1]
-            });
-        });
-    }
-    componentDidMount() {
-        console.log("Primary component: <Card /> did mount.");
-        socket.emit('containers.list');
-    }
-    render() {
-        return (React.createElement("div", {className: "container"}, 
-            React.createElement("div", {className: "row page-header"}, 
-                React.createElement("div", {className: "col-lg-12"}, 
-                    React.createElement("h1", null, "Docker Dashboard")
-                ), 
-                React.createElement("div", {className: "col-lg-12"}, 
-                    React.createElement("h4", null, "A dashboard for monitoring and manipulating you docker containers")
-                )), 
-            React.createElement("div", {className: "container"}, 
-                React.createElement(button_1.default, {buttonName: "Create New", buttonStyle: "btn btn-primary"})
-            ), 
-            React.createElement("div", {className: "container"}, 
-                React.createElement("div", {className: "row"}, 
-                    React.createElement("div", {className: "col-sm-6"}, 
-                        React.createElement("h3", null, 
-                            React.createElement("u", null, "Stopped")
-                        ), 
-                        React.createElement("div", {className: "row"}, 
-                            React.createElement("div", {className: "col-sm-12"}, 
-                                React.createElement(stopped_1.default, null)
-                            )
-                        )), 
-                    React.createElement("div", {className: "col-sm-6"}, 
-                        React.createElement("h3", null, 
-                            React.createElement("u", null, "Running")
-                        ), 
-                        React.createElement("div", {className: "row"}, 
-                            React.createElement("div", {className: "col-sm-12"}, 
-                                React.createElement(started_1.default, null)
-                            )
-                        )))
-            )));
-    }
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Card;
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-class ContainerItem extends React.Component {
-    /**
-     * Helper function to determine if the container is running
-     */
-    isRunning() {
-        return this.props._state;
-    }
-    render() {
-        const panelClass = this.isRunning() ? 'success' : 'default';
-        const classes = 'panel panel-' + panelClass;
-        const buttonText = this.isRunning() ? 'Stop' : 'Start';
-        return (React.createElement("div", {className: classes}, 
-            React.createElement("div", {className: "panel-heading"}, this.props.name), 
-            React.createElement("div", {className: "panel-body"}, 
-                "Status: ", 
-                this.props.status, 
-                React.createElement("br", null), 
-                "Image: ", 
-                this.props.image), 
-            React.createElement("div", {className: "panel-footer"}, 
-                React.createElement("button", {className: "btn btn-default"}, buttonText)
-            )));
-    }
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = ContainerItem;
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-const containerList_1 = __webpack_require__(6);
-class Started extends React.Component {
-    _getStoppedContainers() {
-        return [];
-    }
-    render() {
-        const containerList = this._getStoppedContainers();
-        return (React.createElement("div", null, 
-            React.createElement(containerList_1.default, {list: containerList})
-        ));
-    }
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Started;
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-const containerList_1 = __webpack_require__(6);
-class Stopped extends React.Component {
-    _getStoppedContainers() {
-        return [];
-    }
-    render() {
-        const containerList = this._getStoppedContainers();
-        return (React.createElement("div", null, 
-            React.createElement(containerList_1.default, {list: containerList})
-        ));
-    }
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Stopped;
-
-
-/***/ }),
-/* 18 */
+/* 12 */
 /***/ (function(module, exports) {
 
 /**
@@ -2169,14 +1977,14 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 19 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
  * Module dependencies
  */
 
-var XMLHttpRequest = __webpack_require__(9);
+var XMLHttpRequest = __webpack_require__(7);
 var XHR = __webpack_require__(45);
 var JSONP = __webpack_require__(44);
 var websocket = __webpack_require__(46);
@@ -2229,18 +2037,18 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 20 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(8);
-var parseqs = __webpack_require__(11);
+var Transport = __webpack_require__(6);
+var parseqs = __webpack_require__(9);
 var parser = __webpack_require__(2);
 var inherit = __webpack_require__(3);
-var yeast = __webpack_require__(33);
+var yeast = __webpack_require__(27);
 var debug = __webpack_require__(4)('engine.io-client:polling');
 
 /**
@@ -2254,7 +2062,7 @@ module.exports = Polling;
  */
 
 var hasXHR2 = (function () {
-  var XMLHttpRequest = __webpack_require__(9);
+  var XMLHttpRequest = __webpack_require__(7);
   var xhr = new XMLHttpRequest({ xdomain: false });
   return null != xhr.responseType;
 })();
@@ -2480,7 +2288,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 21 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2488,7 +2296,7 @@ Polling.prototype.uri = function () {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(23);
+var isArray = __webpack_require__(17);
 
 /**
  * Module exports.
@@ -2546,7 +2354,7 @@ function hasBinary(data) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 16 */
 /***/ (function(module, exports) {
 
 
@@ -2561,7 +2369,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 23 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -2570,7 +2378,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 24 */
+/* 18 */
 /***/ (function(module, exports) {
 
 /**
@@ -2725,7 +2533,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 25 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /**
@@ -2770,7 +2578,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 26 */
+/* 20 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -2956,7 +2764,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 27 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2965,13 +2773,13 @@ process.umask = function() { return 0; };
  */
 
 var eio = __webpack_require__(41);
-var Socket = __webpack_require__(29);
-var Emitter = __webpack_require__(30);
-var parser = __webpack_require__(12);
-var on = __webpack_require__(28);
-var bind = __webpack_require__(18);
+var Socket = __webpack_require__(23);
+var Emitter = __webpack_require__(24);
+var parser = __webpack_require__(10);
+var on = __webpack_require__(22);
+var bind = __webpack_require__(12);
 var debug = __webpack_require__(5)('socket.io-client:manager');
-var indexOf = __webpack_require__(22);
+var indexOf = __webpack_require__(16);
 var Backoff = __webpack_require__(37);
 
 /**
@@ -3522,7 +3330,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 28 */
+/* 22 */
 /***/ (function(module, exports) {
 
 
@@ -3552,7 +3360,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 29 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3560,13 +3368,13 @@ function on (obj, ev, fn) {
  * Module dependencies.
  */
 
-var parser = __webpack_require__(12);
-var Emitter = __webpack_require__(30);
+var parser = __webpack_require__(10);
+var Emitter = __webpack_require__(24);
 var toArray = __webpack_require__(59);
-var on = __webpack_require__(28);
-var bind = __webpack_require__(18);
+var on = __webpack_require__(22);
+var bind = __webpack_require__(12);
 var debug = __webpack_require__(5)('socket.io-client:socket');
-var hasBin = __webpack_require__(21);
+var hasBin = __webpack_require__(15);
 
 /**
  * Module exports.
@@ -3977,7 +3785,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 30 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -4146,7 +3954,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 31 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -4166,7 +3974,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -4194,7 +4002,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 33 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4269,9 +4077,241 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 34 */
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
+const io = __webpack_require__(52);
+const _ = __webpack_require__(60);
+const stopped_1 = __webpack_require__(34);
+const started_1 = __webpack_require__(33);
+const button_1 = __webpack_require__(30);
+const socket = io.connect();
+class Card extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            runningContainers: [],
+            stoppedContainers: []
+        };
+        this.callback = this.callback.bind(this);
+        socket.on('containers.list', (containers) => {
+            console.log("Primary component <Card /> did receive container list from socket connection to server.", containers);
+            const partitioned = _.partition(containers, (c) => c.State == "running");
+            this.setState({
+                runningContainers: partitioned[0],
+                stoppedContainers: partitioned[1]
+            });
+        });
+    }
+    callback(item) {
+        console.log(item.name);
+    }
+    componentDidMount() {
+        console.log("Primary component: <Card /> did mount.");
+        socket.emit('containers.list');
+    }
+    render() {
+        return (React.createElement("div", {className: "container"}, 
+            React.createElement("div", {className: "row page-header"}, 
+                React.createElement("div", {className: "col-lg-12"}, 
+                    React.createElement("h1", null, "Docker Dashboard")
+                ), 
+                React.createElement("div", {className: "col-lg-12"}, 
+                    React.createElement("h4", null, "A dashboard for monitoring and manipulating you docker containers")
+                )), 
+            React.createElement("div", {className: "container"}, 
+                React.createElement(button_1.default, {buttonName: "Create New", buttonStyle: "btn btn-primary", callback: this.callback})
+            ), 
+            React.createElement("div", {className: "container"}, 
+                React.createElement("div", {className: "row"}, 
+                    React.createElement("div", {className: "col-sm-6"}, 
+                        React.createElement("h3", null, 
+                            React.createElement("u", null, "Stopped")
+                        ), 
+                        React.createElement("div", {className: "row"}, 
+                            React.createElement("div", {className: "col-sm-12"}, 
+                                React.createElement(stopped_1.default, {containers: this.state.stoppedContainers})
+                            )
+                        )), 
+                    React.createElement("div", {className: "col-sm-6"}, 
+                        React.createElement("h3", null, 
+                            React.createElement("u", null, "Running")
+                        ), 
+                        React.createElement("div", {className: "row"}, 
+                            React.createElement("div", {className: "col-sm-12"}, 
+                                React.createElement(started_1.default, {containers: this.state.runningContainers})
+                            )
+                        )))
+            )));
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Card;
+
+
+/***/ }),
+/* 29 */
 /***/ (function(module, exports) {
 
+module.exports = ReactDOM;
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
+;
+class Button extends React.PureComponent {
+    constructor() {
+        super();
+        this.callback = this.callback.bind(this);
+    }
+    callback() {
+        this.props.callback({
+            name: this.props.buttonName,
+        });
+    }
+    render() {
+        let buttonName = this.props.buttonName || "";
+        let buttonStyle = this.props.buttonStyle || "btn btn-primary";
+        return (React.createElement("button", {className: buttonStyle, onClick: this.callback}, buttonName));
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Button;
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
+const button_1 = __webpack_require__(30);
+class ContainerItem extends React.Component {
+    constructor() {
+        super();
+        this.callback = this.callback.bind(this);
+    }
+    /**
+     * Helper function to determine if the container is running
+     */
+    isRunning() {
+        return this.props._status;
+    }
+    callback(item) {
+        console.log(item.name);
+    }
+    render() {
+        const panelClass = this.isRunning() ? 'success' : 'default';
+        const classes = 'panel panel-' + panelClass;
+        const buttonText = this.isRunning() ? 'Stop' : 'Start';
+        const buttonStyle = 'btn btn-' + (this.props._status === true ? 'danger' : 'success');
+        return (React.createElement("div", {className: classes}, 
+            React.createElement("div", {className: "panel-heading"}, 
+                React.createElement("b", null, this.props.Names[0])
+            ), 
+            React.createElement("div", {className: "panel-body"}, 
+                React.createElement("b", null, "Status"), 
+                ": ", 
+                this.props.Status, 
+                React.createElement("br", null), 
+                React.createElement("b", null, "Image"), 
+                ": ", 
+                this.props.Image), 
+            React.createElement("div", {className: "panel-footer"}, 
+                React.createElement(button_1.default, {buttonName: buttonText, buttonStyle: buttonStyle, callback: this.callback})
+            )));
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ContainerItem;
+
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
+const ReactDOM = __webpack_require__(29);
+const card_1 = __webpack_require__(28);
+ReactDOM.render(React.createElement("div", null, 
+    React.createElement(card_1.default, null)
+), document.getElementById('myreactcomponent'));
+
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
+const containerList_1 = __webpack_require__(11);
+class Started extends React.Component {
+    constructor() {
+        super();
+        this._getStartedContainers = this._getStartedContainers.bind(this);
+    }
+    _getStartedContainers() {
+        let c = [];
+        for (let i in this.props.containers) {
+            if (this.props.containers.hasOwnProperty(i)) {
+                c.push({
+                    State: this.props.containers[i].State,
+                    Status: this.props.containers[i].Status,
+                    Image: this.props.containers[i].Image,
+                    Names: this.props.containers[i].Names,
+                    _status: true,
+                });
+            }
+        }
+        return c;
+    }
+    render() {
+        const containerList = this._getStartedContainers();
+        return (React.createElement("div", null, 
+            React.createElement(containerList_1.default, {list: containerList})
+        ));
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Started;
+
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
+const containerList_1 = __webpack_require__(11);
+class Stopped extends React.Component {
+    constructor() {
+        super();
+        this._getStoppedContainers = this._getStoppedContainers.bind(this);
+    }
+    _getStoppedContainers() {
+        return this.props.containers || [];
+    }
+    render() {
+        const containerList = this._getStoppedContainers();
+        return (React.createElement("div", null, 
+            React.createElement(containerList_1.default, {list: containerList})
+        ));
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Stopped;
 
 
 /***/ }),
@@ -4812,14 +4852,14 @@ module.exports.parser = __webpack_require__(2);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(19);
-var Emitter = __webpack_require__(10);
+var transports = __webpack_require__(13);
+var Emitter = __webpack_require__(8);
 var debug = __webpack_require__(4)('engine.io-client:socket');
-var index = __webpack_require__(22);
+var index = __webpack_require__(16);
 var parser = __webpack_require__(2);
-var parseuri = __webpack_require__(25);
+var parseuri = __webpack_require__(19);
 var parsejson = __webpack_require__(51);
-var parseqs = __webpack_require__(11);
+var parseqs = __webpack_require__(9);
 
 /**
  * Module exports.
@@ -4951,8 +4991,8 @@ Socket.protocol = parser.protocol; // this is an int
  */
 
 Socket.Socket = Socket;
-Socket.Transport = __webpack_require__(8);
-Socket.transports = __webpack_require__(19);
+Socket.Transport = __webpack_require__(6);
+Socket.transports = __webpack_require__(13);
 Socket.parser = __webpack_require__(2);
 
 /**
@@ -5558,7 +5598,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(20);
+var Polling = __webpack_require__(14);
 var inherit = __webpack_require__(3);
 
 /**
@@ -5795,9 +5835,9 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  * Module requirements.
  */
 
-var XMLHttpRequest = __webpack_require__(9);
-var Polling = __webpack_require__(20);
-var Emitter = __webpack_require__(10);
+var XMLHttpRequest = __webpack_require__(7);
+var Polling = __webpack_require__(14);
+var Emitter = __webpack_require__(8);
 var inherit = __webpack_require__(3);
 var debug = __webpack_require__(4)('engine.io-client:polling-xhr');
 
@@ -6226,17 +6266,17 @@ function unloadHandler () {
  * Module dependencies.
  */
 
-var Transport = __webpack_require__(8);
+var Transport = __webpack_require__(6);
 var parser = __webpack_require__(2);
-var parseqs = __webpack_require__(11);
+var parseqs = __webpack_require__(9);
 var inherit = __webpack_require__(3);
-var yeast = __webpack_require__(33);
+var yeast = __webpack_require__(27);
 var debug = __webpack_require__(4)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
 if (typeof window === 'undefined') {
   try {
-    NodeWebSocket = __webpack_require__(64);
+    NodeWebSocket = __webpack_require__(63);
   } catch (e) { }
 }
 
@@ -6527,7 +6567,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(24);
+exports.humanize = __webpack_require__(18);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -7672,7 +7712,7 @@ try {
   }
 }).call(this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module), __webpack_require__(0)))
 
 /***/ }),
 /* 51 */
@@ -7722,8 +7762,8 @@ module.exports = function parsejson(data) {
  */
 
 var url = __webpack_require__(53);
-var parser = __webpack_require__(12);
-var Manager = __webpack_require__(27);
+var parser = __webpack_require__(10);
+var Manager = __webpack_require__(21);
 var debug = __webpack_require__(5)('socket.io-client');
 
 /**
@@ -7823,8 +7863,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(27);
-exports.Socket = __webpack_require__(29);
+exports.Manager = __webpack_require__(21);
+exports.Socket = __webpack_require__(23);
 
 
 /***/ }),
@@ -7836,7 +7876,7 @@ exports.Socket = __webpack_require__(29);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(25);
+var parseuri = __webpack_require__(19);
 var debug = __webpack_require__(5)('socket.io-client:url');
 
 /**
@@ -7926,7 +7966,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(24);
+exports.humanize = __webpack_require__(18);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -8125,8 +8165,8 @@ function coerce(val) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(23);
-var isBuf = __webpack_require__(31);
+var isArray = __webpack_require__(17);
+var isBuf = __webpack_require__(25);
 
 /**
  * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -10583,7 +10623,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscor
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module), __webpack_require__(0)))
 
 /***/ }),
 /* 62 */
@@ -10598,28 +10638,7 @@ module.exports = __webpack_amd_options__;
 /* 63 */
 /***/ (function(module, exports) {
 
-module.exports = ReactDOM;
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
 /* (ignored) */
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(7);
-__webpack_require__(13);
-__webpack_require__(14);
-__webpack_require__(15);
-__webpack_require__(6);
-__webpack_require__(7);
-__webpack_require__(34);
-__webpack_require__(16);
-module.exports = __webpack_require__(17);
-
 
 /***/ })
 /******/ ]);

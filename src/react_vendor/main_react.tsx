@@ -1,5 +1,8 @@
 import * as React from 'react';
+
 import * as ReactDOM from 'react-dom';
+
+import Perf from 'react-addons-perf';
 
 import Card from './card';
 

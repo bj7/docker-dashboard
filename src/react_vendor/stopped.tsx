@@ -2,9 +2,18 @@ import * as React from 'react';
 
 import ContainerList from './containerList';
 
-export default class Stopped extends React.Component<{}, undefined> {
+interface P {
+    containers: Array<any>,
+}
+export default class Stopped extends React.Component<P, undefined> {
+    constructor () {
+        super();
+
+        this._getStoppedContainers = this._getStoppedContainers.bind(this);
+    }
+    
     _getStoppedContainers(): Array<any> {
-        return [];
+        return this.props.containers || [];
     }
 
     render() {

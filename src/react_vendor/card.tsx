@@ -16,20 +16,26 @@ export default class Card extends React.Component<CardProps, any> {
     constructor() {
         super();
         this.state = {
-            containers: [],
+            runningContainers: [],
             stoppedContainers: []
         };
+
+        this.callback = this.callback.bind(this);
 
         socket.on('containers.list', (containers: any) => {
             console.log("Primary component <Card /> did receive container list from socket connection to server.", containers);
 
             const partitioned = _.partition(containers, (c: any) => c.State == "running");
-            console.log("Partitioned", partitioned);
+
             this.setState({
-                containers: partitioned[0],
+                runningContainers: partitioned[0],
                 stoppedContainers: partitioned[1]
             });
         });
+    }
+
+    callback (item: {name: string}) {
+        console.log(item.name);
     }
 
     componentDidMount() {
@@ -49,7 +55,7 @@ export default class Card extends React.Component<CardProps, any> {
                     </div>
                 </div>
                 <div className="container">
-                    <Button buttonName="Create New" buttonStyle="btn btn-primary" />
+                    <Button buttonName={"Create New"} buttonStyle={"btn btn-primary"} callback={this.callback} />
                 </div>
                 <div className="container">
                     <div className="row">
@@ -57,7 +63,7 @@ export default class Card extends React.Component<CardProps, any> {
                             <h3><u>Stopped</u></h3>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <Stopped />
+                                    <Stopped containers={this.state.stoppedContainers} />
                                 </div>
                             </div>
                         </div>
@@ -65,7 +71,7 @@ export default class Card extends React.Component<CardProps, any> {
                             <h3><u>Running</u></h3>
                             <div className="row">
                                 <div className="col-sm-12">
-                                    <Started />
+                                    <Started containers={this.state.runningContainers} />
                                 </div>
                             </div>
                         </div>

@@ -1,23 +1,31 @@
 import * as React from 'react';
 
-export interface P {
+interface P {
     buttonName: string,
     buttonStyle: string,
-}
-export default class Button extends React.Component<P, undefined> {
-    render() {
-        let buttonName = "";
-        let buttonStyle = "btn btn-primary";
-        if (this.props.buttonName != "" || this.props.buttonName !== undefined) {
-            buttonName = this.props.buttonName;
-        }
-        if (this.props.buttonStyle != "" || this.props.buttonStyle !== undefined) {
-            buttonStyle = this.props.buttonStyle;
-        }
+    callback: Function,
+};
+
+export default class Button extends React.PureComponent<P, undefined> {
+    constructor () {
+        super();
+        this.callback = this.callback.bind(this);
+    }
+
+    callback () {
+        this.props.callback({
+            name: this.props.buttonName,
+        });
+    }
+
+    render () {
+        let buttonName = this.props.buttonName || "";
+        let buttonStyle = this.props.buttonStyle || "btn btn-primary";
+
         return (
-            <button className={buttonStyle}>
+            <button className={buttonStyle} onClick={this.callback}>
                 {buttonName}
             </button>
-        );
+        )
     }
 }
