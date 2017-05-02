@@ -19,6 +19,7 @@ export default class Button extends React.PureComponent<P, undefined> {
     }
 
     render () {
+        console.log("Rendering Button component");
         let buttonName = this.props.buttonName || "";
         let buttonStyle = this.props.buttonStyle || "btn btn-primary";
 

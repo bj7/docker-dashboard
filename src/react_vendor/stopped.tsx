@@ -11,9 +11,21 @@ export default class Stopped extends React.Component<P, undefined> {
 
         this._getStoppedContainers = this._getStoppedContainers.bind(this);
     }
-    
+
     _getStoppedContainers(): Array<any> {
-        return this.props.containers || [];
+       let c = [];
+        for (let i in this.props.containers) {
+            if (this.props.containers.hasOwnProperty(i)) {
+                c.push({
+                    State: this.props.containers[i].State,
+                    Status: this.props.containers[i].Status,
+                    Image: this.props.containers[i].Image,
+                    Names: this.props.containers[i].Names,
+                    _status: false,
+                });
+            }
+        }
+        return c
     }
 
     render() {

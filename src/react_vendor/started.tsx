@@ -8,6 +8,7 @@ interface P {
 export default class Started extends React.Component<P, undefined> {
     constructor () {
         super();
+
         this._getStartedContainers = this._getStartedContainers.bind(this);
     }
 

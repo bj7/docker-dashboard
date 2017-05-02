@@ -4177,6 +4177,7 @@ class Button extends React.PureComponent {
         });
     }
     render() {
+        console.log("Rendering Button component");
         let buttonName = this.props.buttonName || "";
         let buttonStyle = this.props.buttonStyle || "btn btn-primary";
         return (React.createElement("button", {className: buttonStyle, onClick: this.callback}, buttonName));
@@ -4301,7 +4302,19 @@ class Stopped extends React.Component {
         this._getStoppedContainers = this._getStoppedContainers.bind(this);
     }
     _getStoppedContainers() {
-        return this.props.containers || [];
+        let c = [];
+        for (let i in this.props.containers) {
+            if (this.props.containers.hasOwnProperty(i)) {
+                c.push({
+                    State: this.props.containers[i].State,
+                    Status: this.props.containers[i].Status,
+                    Image: this.props.containers[i].Image,
+                    Names: this.props.containers[i].Names,
+                    _status: false,
+                });
+            }
+        }
+        return c;
     }
     render() {
         const containerList = this._getStoppedContainers();
