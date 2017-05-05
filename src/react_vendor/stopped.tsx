@@ -4,6 +4,7 @@ import ContainerList from './containerList';
 
 interface P {
     containers: Array<any>,
+    callback: Function,
 }
 export default class Stopped extends React.Component<P, undefined> {
     constructor () {
@@ -22,6 +23,7 @@ export default class Stopped extends React.Component<P, undefined> {
                     Image: this.props.containers[i].Image,
                     Names: this.props.containers[i].Names,
                     _status: false,
+                    Id: this.props.containers[i].Id,
                 });
             }
         }
@@ -32,7 +34,7 @@ export default class Stopped extends React.Component<P, undefined> {
         const containerList = this._getStoppedContainers();
         return (
             <div>
-                <ContainerList list={containerList} />
+                <ContainerList list={containerList} callback={this.props.callback} />
             </div>
         );
     }

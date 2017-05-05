@@ -108,7 +108,7 @@ module.exports = React;
  */
 
 var keys = __webpack_require__(48);
-var hasBinary = __webpack_require__(15);
+var hasBinary = __webpack_require__(16);
 var sliceBuffer = __webpack_require__(36);
 var after = __webpack_require__(35);
 var utf8 = __webpack_require__(61);
@@ -909,7 +909,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)))
 
 /***/ }),
 /* 5 */
@@ -1093,7 +1093,7 @@ function localstorage(){
   } catch (e) {}
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(21)))
 
 /***/ }),
 /* 6 */
@@ -1527,7 +1527,7 @@ var debug = __webpack_require__(56)('socket.io-parser');
 var json = __webpack_require__(50);
 var Emitter = __webpack_require__(40);
 var binary = __webpack_require__(55);
-var isBuf = __webpack_require__(25);
+var isBuf = __webpack_require__(26);
 
 /**
  * Protocol version.
@@ -1931,13 +1931,42 @@ function error(data){
 "use strict";
 
 const React = __webpack_require__(1);
+;
+class Button extends React.PureComponent {
+    constructor() {
+        super();
+        this.callback = this.callback.bind(this);
+    }
+    callback() {
+        this.props.callback({
+            name: this.props.buttonName,
+        });
+    }
+    render() {
+        console.log("Rendering Button component");
+        let buttonName = this.props.buttonName || "";
+        let buttonStyle = this.props.buttonStyle || "btn btn-primary";
+        return (React.createElement("button", {className: buttonStyle, onClick: this.callback}, buttonName));
+    }
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = Button;
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+const React = __webpack_require__(1);
 const containerItem_1 = __webpack_require__(31);
 class ContainerList extends React.Component {
     render() {
         const output = [];
         for (let i in this.props.list) {
             if (this.props.list.hasOwnProperty(i)) {
-                output.push(React.createElement(containerItem_1.default, {key: i, _status: this.props.list[i]._status, Names: this.props.list[i].Names, Status: this.props.list[i].Status, Image: this.props.list[i].Image, State: this.props.list[i].State}));
+                output.push(React.createElement(containerItem_1.default, {key: i, _status: this.props.list[i]._status, Names: this.props.list[i].Names, Status: this.props.list[i].Status, Image: this.props.list[i].Image, State: this.props.list[i].State, callback: this.props.callback, Id: this.props.list[i].Id}));
             }
         }
         return (React.createElement("div", null, output.length <= 0 ? "No Containers" : output));
@@ -1948,7 +1977,7 @@ exports.default = ContainerList;
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 /**
@@ -1977,7 +2006,7 @@ module.exports = function(obj, fn){
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -2037,7 +2066,7 @@ function polling (opts) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -2048,7 +2077,7 @@ var Transport = __webpack_require__(6);
 var parseqs = __webpack_require__(9);
 var parser = __webpack_require__(2);
 var inherit = __webpack_require__(3);
-var yeast = __webpack_require__(27);
+var yeast = __webpack_require__(28);
 var debug = __webpack_require__(4)('engine.io-client:polling');
 
 /**
@@ -2288,7 +2317,7 @@ Polling.prototype.uri = function () {
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -2296,7 +2325,7 @@ Polling.prototype.uri = function () {
  * Module requirements.
  */
 
-var isArray = __webpack_require__(17);
+var isArray = __webpack_require__(18);
 
 /**
  * Module exports.
@@ -2354,7 +2383,7 @@ function hasBinary(data) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 
@@ -2369,7 +2398,7 @@ module.exports = function(arr, obj){
 };
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module.exports = Array.isArray || function (arr) {
@@ -2378,7 +2407,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 /**
@@ -2533,7 +2562,7 @@ function plural(ms, n, name) {
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 /**
@@ -2578,7 +2607,7 @@ module.exports = function parseuri(str) {
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -2764,7 +2793,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -2773,13 +2802,13 @@ process.umask = function() { return 0; };
  */
 
 var eio = __webpack_require__(41);
-var Socket = __webpack_require__(23);
-var Emitter = __webpack_require__(24);
+var Socket = __webpack_require__(24);
+var Emitter = __webpack_require__(25);
 var parser = __webpack_require__(10);
-var on = __webpack_require__(22);
-var bind = __webpack_require__(12);
+var on = __webpack_require__(23);
+var bind = __webpack_require__(13);
 var debug = __webpack_require__(5)('socket.io-client:manager');
-var indexOf = __webpack_require__(16);
+var indexOf = __webpack_require__(17);
 var Backoff = __webpack_require__(37);
 
 /**
@@ -3330,7 +3359,7 @@ Manager.prototype.onreconnect = function () {
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 
@@ -3360,7 +3389,7 @@ function on (obj, ev, fn) {
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3369,12 +3398,12 @@ function on (obj, ev, fn) {
  */
 
 var parser = __webpack_require__(10);
-var Emitter = __webpack_require__(24);
+var Emitter = __webpack_require__(25);
 var toArray = __webpack_require__(59);
-var on = __webpack_require__(22);
-var bind = __webpack_require__(12);
+var on = __webpack_require__(23);
+var bind = __webpack_require__(13);
 var debug = __webpack_require__(5)('socket.io-client:socket');
-var hasBin = __webpack_require__(15);
+var hasBin = __webpack_require__(16);
 
 /**
  * Module exports.
@@ -3785,7 +3814,7 @@ Socket.prototype.compress = function (compress) {
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -3954,7 +3983,7 @@ Emitter.prototype.hasListeners = function(event){
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -3974,7 +4003,7 @@ function isBuf(obj) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -4002,7 +4031,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4077,7 +4106,7 @@ module.exports = yeast;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4087,7 +4116,7 @@ const io = __webpack_require__(52);
 const _ = __webpack_require__(60);
 const stopped_1 = __webpack_require__(34);
 const started_1 = __webpack_require__(33);
-const button_1 = __webpack_require__(30);
+const button_1 = __webpack_require__(11);
 const socket = io.connect();
 class Card extends React.Component {
     constructor() {
@@ -4106,8 +4135,48 @@ class Card extends React.Component {
             });
         });
     }
+    /**
+     * @description Handles button callbacks and enables appropriate logic.
+     *
+     * @param {{btnName: string, _status: boolean, Id: string}} item - Object that contains the properties of the
+     * container/button that was clicked.
+     *
+     * @memberof Card
+     */
     callback(item) {
-        console.log(item.name);
+        let newState = Object.assign({}, {
+            runningContainers: this.state.runningContainers,
+            stoppedContainers: this.state.stoppedContainers,
+        });
+        let temp = Object.assign([], this.state.runningContainers);
+        if (item._status !== true && item.btnName == "Stop") {
+            for (var i in this.state.runningContainers) {
+                if (this.state.runningContainers.hasOwnProperty(i)) {
+                    if (this.state.runningContainers[i].Id == item.Id) {
+                        let t = temp.splice(i, 1);
+                        newState.stoppedContainers.push(t[0]);
+                        newState.runningContainers = temp;
+                    }
+                }
+            }
+        }
+        else {
+            temp = Object.assign([], this.state.stoppedContainers);
+            // let tempRunning = Object.assign([], this.state.runningContainers);
+            for (var i in this.state.stoppedContainers) {
+                if (this.state.stoppedContainers.hasOwnProperty(i)) {
+                    if (this.state.stoppedContainers[i].Id == item.Id) {
+                        let t = temp.splice(i, 1);
+                        newState.runningContainers.push(t[0]);
+                        newState.stoppedContainers = temp;
+                    }
+                }
+            }
+        }
+        this.setState({
+            runningContainers: newState.runningContainers,
+            stoppedContainers: newState.stoppedContainers,
+        });
     }
     componentDidMount() {
         console.log("Primary component: <Card /> did mount.");
@@ -4133,7 +4202,7 @@ class Card extends React.Component {
                         ), 
                         React.createElement("div", {className: "row"}, 
                             React.createElement("div", {className: "col-sm-12"}, 
-                                React.createElement(stopped_1.default, {containers: this.state.stoppedContainers})
+                                React.createElement(stopped_1.default, {containers: this.state.stoppedContainers, callback: this.callback})
                             )
                         )), 
                     React.createElement("div", {className: "col-sm-6"}, 
@@ -4142,7 +4211,7 @@ class Card extends React.Component {
                         ), 
                         React.createElement("div", {className: "row"}, 
                             React.createElement("div", {className: "col-sm-12"}, 
-                                React.createElement(started_1.default, {containers: this.state.runningContainers})
+                                React.createElement(started_1.default, {containers: this.state.runningContainers, callback: this.callback})
                             )
                         )))
             )));
@@ -4153,39 +4222,10 @@ exports.default = Card;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports) {
 
 module.exports = ReactDOM;
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-const React = __webpack_require__(1);
-;
-class Button extends React.PureComponent {
-    constructor() {
-        super();
-        this.callback = this.callback.bind(this);
-    }
-    callback() {
-        this.props.callback({
-            name: this.props.buttonName,
-        });
-    }
-    render() {
-        console.log("Rendering Button component");
-        let buttonName = this.props.buttonName || "";
-        let buttonStyle = this.props.buttonStyle || "btn btn-primary";
-        return (React.createElement("button", {className: buttonStyle, onClick: this.callback}, buttonName));
-    }
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = Button;
-
 
 /***/ }),
 /* 31 */
@@ -4194,7 +4234,7 @@ exports.default = Button;
 "use strict";
 
 const React = __webpack_require__(1);
-const button_1 = __webpack_require__(30);
+const button_1 = __webpack_require__(11);
 class ContainerItem extends React.Component {
     constructor() {
         super();
@@ -4207,7 +4247,17 @@ class ContainerItem extends React.Component {
         return this.props._status;
     }
     callback(item) {
-        console.log(item.name);
+        this.props.callback({
+            btnName: item.name,
+            curState: this.props.State,
+            _status: !this.props._status,
+            Id: this.props.Id,
+        });
+    }
+    // Containers should only ever re-render if their _state has changed.
+    shouldComponentUpdate(newProps) {
+        // console.log("Updating container: ", newProps);
+        return newProps._status === this.props._status;
     }
     render() {
         const panelClass = this.isRunning() ? 'success' : 'default';
@@ -4242,8 +4292,8 @@ exports.default = ContainerItem;
 "use strict";
 
 const React = __webpack_require__(1);
-const ReactDOM = __webpack_require__(29);
-const card_1 = __webpack_require__(28);
+const ReactDOM = __webpack_require__(30);
+const card_1 = __webpack_require__(29);
 ReactDOM.render(React.createElement("div", null, 
     React.createElement(card_1.default, null)
 ), document.getElementById('myreactcomponent'));
@@ -4256,7 +4306,7 @@ ReactDOM.render(React.createElement("div", null,
 "use strict";
 
 const React = __webpack_require__(1);
-const containerList_1 = __webpack_require__(11);
+const containerList_1 = __webpack_require__(12);
 class Started extends React.Component {
     constructor() {
         super();
@@ -4272,6 +4322,7 @@ class Started extends React.Component {
                     Image: this.props.containers[i].Image,
                     Names: this.props.containers[i].Names,
                     _status: true,
+                    Id: this.props.containers[i].Id
                 });
             }
         }
@@ -4280,7 +4331,7 @@ class Started extends React.Component {
     render() {
         const containerList = this._getStartedContainers();
         return (React.createElement("div", null, 
-            React.createElement(containerList_1.default, {list: containerList})
+            React.createElement(containerList_1.default, {list: containerList, callback: this.props.callback})
         ));
     }
 }
@@ -4295,7 +4346,7 @@ exports.default = Started;
 "use strict";
 
 const React = __webpack_require__(1);
-const containerList_1 = __webpack_require__(11);
+const containerList_1 = __webpack_require__(12);
 class Stopped extends React.Component {
     constructor() {
         super();
@@ -4311,6 +4362,7 @@ class Stopped extends React.Component {
                     Image: this.props.containers[i].Image,
                     Names: this.props.containers[i].Names,
                     _status: false,
+                    Id: this.props.containers[i].Id,
                 });
             }
         }
@@ -4319,7 +4371,7 @@ class Stopped extends React.Component {
     render() {
         const containerList = this._getStoppedContainers();
         return (React.createElement("div", null, 
-            React.createElement(containerList_1.default, {list: containerList})
+            React.createElement(containerList_1.default, {list: containerList, callback: this.props.callback})
         ));
     }
 }
@@ -4865,12 +4917,12 @@ module.exports.parser = __webpack_require__(2);
  * Module dependencies.
  */
 
-var transports = __webpack_require__(13);
+var transports = __webpack_require__(14);
 var Emitter = __webpack_require__(8);
 var debug = __webpack_require__(4)('engine.io-client:socket');
-var index = __webpack_require__(16);
+var index = __webpack_require__(17);
 var parser = __webpack_require__(2);
-var parseuri = __webpack_require__(19);
+var parseuri = __webpack_require__(20);
 var parsejson = __webpack_require__(51);
 var parseqs = __webpack_require__(9);
 
@@ -5005,7 +5057,7 @@ Socket.protocol = parser.protocol; // this is an int
 
 Socket.Socket = Socket;
 Socket.Transport = __webpack_require__(6);
-Socket.transports = __webpack_require__(13);
+Socket.transports = __webpack_require__(14);
 Socket.parser = __webpack_require__(2);
 
 /**
@@ -5611,7 +5663,7 @@ Socket.prototype.filterUpgrades = function (upgrades) {
  * Module requirements.
  */
 
-var Polling = __webpack_require__(14);
+var Polling = __webpack_require__(15);
 var inherit = __webpack_require__(3);
 
 /**
@@ -5849,7 +5901,7 @@ JSONPPolling.prototype.doWrite = function (data, fn) {
  */
 
 var XMLHttpRequest = __webpack_require__(7);
-var Polling = __webpack_require__(14);
+var Polling = __webpack_require__(15);
 var Emitter = __webpack_require__(8);
 var inherit = __webpack_require__(3);
 var debug = __webpack_require__(4)('engine.io-client:polling-xhr');
@@ -6283,7 +6335,7 @@ var Transport = __webpack_require__(6);
 var parser = __webpack_require__(2);
 var parseqs = __webpack_require__(9);
 var inherit = __webpack_require__(3);
-var yeast = __webpack_require__(27);
+var yeast = __webpack_require__(28);
 var debug = __webpack_require__(4)('engine.io-client:websocket');
 var BrowserWebSocket = global.WebSocket || global.MozWebSocket;
 var NodeWebSocket;
@@ -6580,7 +6632,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(18);
+exports.humanize = __webpack_require__(19);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -7725,7 +7777,7 @@ try {
   }
 }).call(this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)(module), __webpack_require__(0)))
 
 /***/ }),
 /* 51 */
@@ -7776,7 +7828,7 @@ module.exports = function parsejson(data) {
 
 var url = __webpack_require__(53);
 var parser = __webpack_require__(10);
-var Manager = __webpack_require__(21);
+var Manager = __webpack_require__(22);
 var debug = __webpack_require__(5)('socket.io-client');
 
 /**
@@ -7876,8 +7928,8 @@ exports.connect = lookup;
  * @api public
  */
 
-exports.Manager = __webpack_require__(21);
-exports.Socket = __webpack_require__(23);
+exports.Manager = __webpack_require__(22);
+exports.Socket = __webpack_require__(24);
 
 
 /***/ }),
@@ -7889,7 +7941,7 @@ exports.Socket = __webpack_require__(23);
  * Module dependencies.
  */
 
-var parseuri = __webpack_require__(19);
+var parseuri = __webpack_require__(20);
 var debug = __webpack_require__(5)('socket.io-client:url');
 
 /**
@@ -7979,7 +8031,7 @@ exports.coerce = coerce;
 exports.disable = disable;
 exports.enable = enable;
 exports.enabled = enabled;
-exports.humanize = __webpack_require__(18);
+exports.humanize = __webpack_require__(19);
 
 /**
  * The currently active debug mode names, and names to skip.
@@ -8178,8 +8230,8 @@ function coerce(val) {
  * Module requirements
  */
 
-var isArray = __webpack_require__(17);
-var isBuf = __webpack_require__(25);
+var isArray = __webpack_require__(18);
+var isBuf = __webpack_require__(26);
 
 /**
  * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
@@ -10636,7 +10688,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;//     Underscor
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(27)(module), __webpack_require__(0)))
 
 /***/ }),
 /* 62 */

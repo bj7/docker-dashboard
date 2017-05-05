@@ -7,6 +7,8 @@ interface P {
     Status: string,
     Image: string,
     _status: boolean,
+    callback: Function,
+    Id: string,
 }
 
 export default class ContainerItem extends React.Component<P, undefined> {
@@ -23,7 +25,18 @@ export default class ContainerItem extends React.Component<P, undefined> {
     }
 
     callback (item: {name: string}) {
-        console.log(item.name);
+        this.props.callback({
+            btnName: item.name,
+            curState: this.props.State,
+            _status: !this.props._status,
+            Id: this.props.Id,
+        });
+    }
+
+    // Containers should only ever re-render if their _state has changed.
+    shouldComponentUpdate (newProps: any) {
+        // console.log("Updating container: ", newProps);
+        return newProps._status === this.props._status;
     }
 
     render() {
