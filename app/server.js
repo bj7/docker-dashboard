@@ -23,6 +23,22 @@ function refreshContainers() {
     });
 }
 
+function stopContainers(c) {
+    console.log("Stopping container: ", c);
+    let container = docker.getContainer(c.Id);
+    container.stop(() => {
+        refreshContainers();
+    });
+}
+
+function startContainers(c) {
+    console.log("Starting container: ", c);
+    let container = docker.getContainer(c.Id);
+    container.start(() => {
+        refreshContainers();
+    });
+}
+
 app.use(express.static('public'));
 app.use(express.static('node_modules'));
 
@@ -37,6 +53,12 @@ io.on('connection', (socket) => {
     socket.on('containers.list', () => {
         refreshContainers();
     });
+    socket.on('containers.stop', (c) => {
+        stopContainers(c);
+    });
+    socket.on('containers.start', (c) => {
+        startContainers(c);
+    })
 });
 
 server.listen(3000, () => {

@@ -4144,39 +4144,12 @@ class Card extends React.Component {
      * @memberof Card
      */
     callback(item) {
-        let newState = Object.assign({}, {
-            runningContainers: this.state.runningContainers,
-            stoppedContainers: this.state.stoppedContainers,
-        });
-        let temp = Object.assign([], this.state.runningContainers);
         if (item._status !== true && item.btnName == "Stop") {
-            for (var i in this.state.runningContainers) {
-                if (this.state.runningContainers.hasOwnProperty(i)) {
-                    if (this.state.runningContainers[i].Id == item.Id) {
-                        let t = temp.splice(i, 1);
-                        newState.stoppedContainers.push(t[0]);
-                        newState.runningContainers = temp;
-                    }
-                }
-            }
+            socket.emit('containers.stop', { Id: item.Id, });
         }
         else {
-            temp = Object.assign([], this.state.stoppedContainers);
-            // let tempRunning = Object.assign([], this.state.runningContainers);
-            for (var i in this.state.stoppedContainers) {
-                if (this.state.stoppedContainers.hasOwnProperty(i)) {
-                    if (this.state.stoppedContainers[i].Id == item.Id) {
-                        let t = temp.splice(i, 1);
-                        newState.runningContainers.push(t[0]);
-                        newState.stoppedContainers = temp;
-                    }
-                }
-            }
+            socket.emit('containers.start', { Id: item.Id, });
         }
-        this.setState({
-            runningContainers: newState.runningContainers,
-            stoppedContainers: newState.stoppedContainers,
-        });
     }
     componentDidMount() {
         console.log("Primary component: <Card /> did mount.");
