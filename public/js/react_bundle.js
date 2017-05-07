@@ -1939,7 +1939,7 @@ class Button extends React.PureComponent {
     }
     callback() {
         this.props.callback({
-            name: this.props.buttonName,
+            btnName: this.props.buttonName,
         });
     }
     render() {
@@ -4123,7 +4123,8 @@ class Card extends React.Component {
         super();
         this.state = {
             runningContainers: [],
-            stoppedContainers: []
+            stoppedContainers: [],
+            loading: false,
         };
         this.callback = this.callback.bind(this);
         socket.on('containers.list', (containers) => {
@@ -4131,7 +4132,8 @@ class Card extends React.Component {
             const partitioned = _.partition(containers, (c) => c.State == "running");
             this.setState({
                 runningContainers: partitioned[0],
-                stoppedContainers: partitioned[1]
+                stoppedContainers: partitioned[1],
+                loading: false,
             });
         });
     }
@@ -4144,11 +4146,18 @@ class Card extends React.Component {
      * @memberof Card
      */
     callback(item) {
+        console.log(item);
+        console.log(this.setState({
+            loading: true,
+        }));
         if (item._status !== true && item.btnName == "Stop") {
             socket.emit('containers.stop', { Id: item.Id, });
         }
-        else {
+        else if (item._status === true && item.btnName == "Start") {
             socket.emit('containers.start', { Id: item.Id, });
+        }
+        else if (item.btnName == "Stop All") {
+            socket.emit('containers.stopAll');
         }
     }
     componentDidMount() {
@@ -4156,6 +4165,9 @@ class Card extends React.Component {
         socket.emit('containers.list');
     }
     render() {
+        let loader = this.state.loading ? React.createElement("div", {className: "overlay"}, 
+            React.createElement("div", {className: "loader"})
+        ) : null;
         return (React.createElement("div", {className: "container"}, 
             React.createElement("div", {className: "row page-header"}, 
                 React.createElement("div", {className: "col-lg-12"}, 
@@ -4164,9 +4176,9 @@ class Card extends React.Component {
                 React.createElement("div", {className: "col-lg-12"}, 
                     React.createElement("h4", null, "A dashboard for monitoring and manipulating you docker containers")
                 )), 
-            React.createElement("div", {className: "container"}, 
-                React.createElement(button_1.default, {buttonName: "Create New", buttonStyle: "btn btn-primary", callback: this.callback})
-            ), 
+            React.createElement("div", {className: "container btn-toolbar"}, 
+                React.createElement(button_1.default, {buttonName: "Create New", buttonStyle: "btn btn-primary", callback: this.callback}), 
+                React.createElement(button_1.default, {buttonName: "Stop All", buttonStyle: "btn btn-warning", callback: this.callback})), 
             React.createElement("div", {className: "container"}, 
                 React.createElement("div", {className: "row"}, 
                     React.createElement("div", {className: "col-sm-6"}, 
@@ -4187,7 +4199,8 @@ class Card extends React.Component {
                                 React.createElement(started_1.default, {containers: this.state.runningContainers, callback: this.callback})
                             )
                         )))
-            )));
+            ), 
+            loader));
     }
 }
 Object.defineProperty(exports, "__esModule", { value: true });
@@ -4221,7 +4234,7 @@ class ContainerItem extends React.Component {
     }
     callback(item) {
         this.props.callback({
-            btnName: item.name,
+            btnName: item.btnName,
             curState: this.props.State,
             _status: !this.props._status,
             Id: this.props.Id,

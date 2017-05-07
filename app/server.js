@@ -16,14 +16,14 @@ const docker = new Docker({
     socketPath: '/var/run/docker.sock'
 });
 
-function refreshContainers() {
+function refreshContainers () {
     console.log("getting container list");
     docker.listContainers({ all: true }, (err, containers) => {
         io.emit('containers.list', containers);
     });
 }
 
-function stopContainers(c) {
+function stopContainers (c) {
     console.log("Stopping container: ", c);
     let container = docker.getContainer(c.Id);
     container.stop(() => {
@@ -31,11 +31,24 @@ function stopContainers(c) {
     });
 }
 
-function startContainers(c) {
+function startContainers (c) {
     console.log("Starting container: ", c);
     let container = docker.getContainer(c.Id);
     container.start(() => {
         refreshContainers();
+    });
+}
+
+function stopAllContainers (c) {
+    console.log("Stopping all containers...");
+    docker.listContainers((err, containers) => {
+        containers.forEach (containerInfo => {
+            console.log("Stopping container: ", containerInfo);
+            docker.getContainer(containerInfo.Id).stop();
+        });
+        setTimeout(() => {
+            refreshContainers();
+        }, 2000);
     });
 }
 
@@ -53,11 +66,14 @@ io.on('connection', (socket) => {
     socket.on('containers.list', () => {
         refreshContainers();
     });
-    socket.on('containers.stop', (c) => {
+    socket.on('containers.stop', c => {
         stopContainers(c);
     });
-    socket.on('containers.start', (c) => {
+    socket.on('containers.start', c => {
         startContainers(c);
+    });
+    socket.on('containers.stopAll', () => {
+        stopAllContainers();
     })
 });
 

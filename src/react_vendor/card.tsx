@@ -17,7 +17,8 @@ export default class Card extends React.Component<CardProps, any> {
         super();
         this.state = {
             runningContainers: [],
-            stoppedContainers: []
+            stoppedContainers: [],
+            loading: false,
         };
 
         this.callback = this.callback.bind(this);
@@ -29,7 +30,8 @@ export default class Card extends React.Component<CardProps, any> {
 
             this.setState({
                 runningContainers: partitioned[0],
-                stoppedContainers: partitioned[1]
+                stoppedContainers: partitioned[1],
+                loading: false,
             });
         });
     }
@@ -43,19 +45,29 @@ export default class Card extends React.Component<CardProps, any> {
      * @memberof Card
      */
     callback (item: {btnName: string, _status: boolean, Id: string}) {
+        console.log(item);
+        console.log(this.setState({
+            loading: true,
+        }));
         if (item._status !== true && item.btnName == "Stop") {
              socket.emit('containers.stop', {Id: item.Id,});
-        } else {
+        } else if (item._status === true && item.btnName == "Start") {
             socket.emit('containers.start', {Id: item.Id,});
+        } else if (item.btnName == "Stop All") {
+            socket.emit('containers.stopAll');
         }
     }
 
-    componentDidMount() {
+    componentDidMount () {
         console.log("Primary component: <Card /> did mount.");
         socket.emit('containers.list');
     }
 
-    render() {
+    render () {
+        let loader = this.state.loading ? <div className={"overlay"}>
+            <div className={"loader"}></div>
+        </div> : null;
+
         return (
             <div className="container">
                 <div className="row page-header">
@@ -66,8 +78,9 @@ export default class Card extends React.Component<CardProps, any> {
                         <h4>A dashboard for monitoring and manipulating you docker containers</h4>
                     </div>
                 </div>
-                <div className="container">
+                <div className="container btn-toolbar">
                     <Button buttonName={"Create New"} buttonStyle={"btn btn-primary"} callback={this.callback} />
+                    <Button buttonName={"Stop All"} buttonStyle={"btn btn-warning"} callback={this.callback} />
                 </div>
                 <div className="container">
                     <div className="row">
@@ -89,6 +102,7 @@ export default class Card extends React.Component<CardProps, any> {
                         </div>
                     </div>
                 </div>
+                {loader}
             </div>
         );
     }

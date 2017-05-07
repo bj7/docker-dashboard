@@ -24,9 +24,9 @@ export default class ContainerItem extends React.Component<P, undefined> {
         return this.props._status;
     }
 
-    callback (item: {name: string}) {
+    callback (item: {btnName: string}) {
         this.props.callback({
-            btnName: item.name,
+            btnName: item.btnName,
             curState: this.props.State,
             _status: !this.props._status,
             Id: this.props.Id,

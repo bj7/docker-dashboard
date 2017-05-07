@@ -14,7 +14,7 @@ export default class Button extends React.PureComponent<P, undefined> {
 
     callback () {
         this.props.callback({
-            name: this.props.buttonName,
+            btnName: this.props.buttonName,
         });
     }
 
